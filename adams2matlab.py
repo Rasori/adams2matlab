@@ -16,8 +16,13 @@ def divider(filename):
                 while True:
                     row = next(reader)
                     if any(row) and row[0] == ' Result ID':
+                        row = next(reader)  # Skip few lines
+                        row = next(reader)
                         row = next(reader)
                         dataname = row[0]  # Used in file naming
+                        dataname = dataname.rsplit('.', maxsplit=1)
+                        dataname = dataname[0].replace('.', '_')
+
                         break
                 output_filename = dataname + '.csv'
 
